@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: access-control-apisix-opa-plugin-config
+spec:
+  plugins:
+  - name: opa
+    enable: true
+    config:
+      host: http://access-control-opa.default.svc.cluster.local:8181 # Point to OPA service.
+      policy: AccessControl
