@@ -1,0 +1,12 @@
+dependencies:
+- name: opa-kube-mgmt
+  repository: https://open-policy-agent.github.io/kube-mgmt/charts
+  version: 8.5.11
+- name: apisix
+  repository: https://charts.apiseven.com
+  version: 2.10.0
+- name: data-security-service
+  repository: https://candil-data-fabric.github.io/data-security-service-helm
+  version: 1.1.1
+digest: sha256:23e8a633f99f66498e71165f2fe8fd61fa1b1c87e2332d903bd3c36120793452
+generated: "2025-02-14T09:40:09.864912725+01:00"
