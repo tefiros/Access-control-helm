@@ -136,7 +136,9 @@ opa-kube-mgmt:
   # Port to which the opa pod will bind itself,
   port: 8181
 
-  extraArgs: []
+  extraArgs:
+    - "--set"
+    - "decision_logs.console=true"
 
   # Extra environment variables to be loaded into the OPA container
   extraEnv: []
@@ -184,7 +186,7 @@ opa-kube-mgmt:
       ignoreNs: []
 
   # Log level for OPA ('debug', 'info', 'error') (app default=info)
-  logLevel: info
+  logLevel: debug
 
   # Log format for OPA ('text', 'json') (app default=text)
   logFormat: json
