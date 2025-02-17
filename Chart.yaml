@@ -28,7 +28,7 @@ dependencies:
   - name: keycloak
     condition: keycloak.enabled
     version: 24.4.10
-    repository: "oci://registry-1.docker.io/bitnamicharts/keycloak"
+    repository: "oci://registry-1.docker.io/bitnamicharts"
   - name: opa-kube-mgmt
     condition: opa-kube-mgmt.enabled
     version: 8.5.11
