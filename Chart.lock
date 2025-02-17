@@ -1,7 +1,7 @@
 dependencies:
 - name: keycloak
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 24.4.10
+  version: 24.4.9
 - name: opa-kube-mgmt
   repository: https://open-policy-agent.github.io/kube-mgmt/charts
   version: 8.5.11
@@ -11,5 +11,5 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:279078f2d5b7e6e64562755fa8d3ac90dc621a6bf15b3f2b9a20a2473954592c
-generated: "2025-02-17T14:37:38.372299+01:00"
+digest: sha256:513f42fd11a49becbd794248b677630e4ecf4597b62ca53e4f8d8622694d37fb
+generated: "2025-02-17T15:46:10.431922+01:00"
