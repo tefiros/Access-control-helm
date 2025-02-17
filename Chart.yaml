@@ -27,8 +27,8 @@ appVersion: "1.0.0"
 dependencies:
   - name: keycloak
     condition: keycloak.enabled
-    version: 24.4.9
-    repository: "oci://registry-1.docker.io/bitnamicharts"
+    version: 18.10.0
+    repository: "oci://ghcr.io/codecentric/helm-charts"
   - name: opa-kube-mgmt
     condition: opa-kube-mgmt.enabled
     version: 8.5.11
