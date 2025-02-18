@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-config
+data:
+  keycloak-opa.yaml: |
+    realm: keycloak-opa
+    enabled: true
+    displayName: keycloak-opa
+    loginWithEmailAllowed: true
+    resetPasswordAllowed: true
+    sslRequired: $(env:SSL_REQUIRED:-EXTERNAL)
+    loginTheme: keycloak
+    accountTheme: keycloak.v3
+    emailTheme: keycloak
+    eventsListeners:
+      - "jboss-logging"
+      - "custom-event-listener"
+    eventsEnabled: true
+
+    authenticationFlows:
+      - alias: "opa-browser"
+        description: "OPA Browser Flow"
+        providerId: basic-flow
+        builtIn: false
+        topLevel: true
+        authenticationExecutions:
+          - flowAlias: "Login"
+            requirement: REQUIRED
+            authenticatorFlow: true
+          - authenticator: auth-opa-authz
+            requirement: REQUIRED
+            authenticatorConfig: "opa-browser-auth-default"
+
+    authenticatorConfig:
+      - alias: "opa-browser-auth-default"
+        config:
+          opa-url: "http://keycloak-opa:8181/v1/data/iam/keycloak/allow"
+          opa-policy-path: "/keycloak/realms/{realm}/{action}/allow"
+          opa-context-attributes: "remoteAddress,protocol,grantType"
+          opa-user-attributes: "email,emailVerified"
+          opa-request-headers: "Authorization,Content-Type,Custom-Header"
