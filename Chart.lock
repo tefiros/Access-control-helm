@@ -15,4 +15,4 @@ dependencies:
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
 digest: sha256:781cf1deeef97333c7fbe7a6d7b764317db7a3bb42c00ad60d1f0fed265388a6
-generated: "2025-02-25T15:35:16.001387206+01:00"
+generated: "2025-02-25T16:03:12.152848368+01:00"
