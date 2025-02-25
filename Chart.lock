@@ -1,6 +1,6 @@
 dependencies:
 - name: keycloak
-  repository: oci://ghcr.io/codecentric/helm-charts
+  repository: https://codecentric.github.io/helm-charts
   version: 18.10.0
 - name: keycloak-config-cli
   repository: https://jkroepke.github.io/helm-charts/
@@ -14,5 +14,5 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:86a105037440421b5ea8f33cee43476e78ffb1864d1a09e50f4d7df2d12f1b73
-generated: "2025-02-18T15:37:57.987311+01:00"
+digest: sha256:781cf1deeef97333c7fbe7a6d7b764317db7a3bb42c00ad60d1f0fed265388a6
+generated: "2025-02-25T15:35:16.001387206+01:00"
