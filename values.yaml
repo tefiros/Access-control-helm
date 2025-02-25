@@ -603,15 +603,16 @@ keycloak-config-cli:
   existingConfigSecret: ""
 
   # Add additional volumes, e.g. for custom secrets
-  extraVolumes: |
+  extraVolumes:
     - name: keycloak-config
       configMap:
         name: keycloak-config
 
   # Add additional volumes mounts, e. g. for custom secrets
-  extraVolumeMounts: |
+  extraVolumeMounts:
     - name: keycloak-config
-      mountPath: /config/
+      mountPath: "/config/keycloak-opa.yaml"
+      subPath: keycloak-opa.yaml
 
 ### --- OPA (OPEN POLICY AGENT) --- ###
 
