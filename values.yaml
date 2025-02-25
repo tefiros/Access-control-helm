@@ -611,7 +611,7 @@ keycloak-config-cli:
   # Add additional volumes mounts, e. g. for custom secrets
   extraVolumeMounts: |
     - name: keycloak-config
-      mountPath: /config/cli
+      mountPath: /config/
 
 ### --- OPA (OPEN POLICY AGENT) --- ###
 
