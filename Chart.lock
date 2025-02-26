@@ -2,9 +2,6 @@ dependencies:
 - name: keycloak
   repository: https://codecentric.github.io/helm-charts
   version: 18.10.0
-- name: keycloak-config-cli
-  repository: https://jkroepke.github.io/helm-charts/
-  version: 1.2.3
 - name: opa-kube-mgmt
   repository: https://open-policy-agent.github.io/kube-mgmt/charts
   version: 8.5.11
@@ -14,5 +11,5 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:781cf1deeef97333c7fbe7a6d7b764317db7a3bb42c00ad60d1f0fed265388a6
-generated: "2025-02-25T16:03:12.152848368+01:00"
+digest: sha256:3af58188c54b2b229a428434ea35bd690907947fd3bc480a9780a839dd3246f7
+generated: "2025-02-26T09:39:16.35022434+01:00"
