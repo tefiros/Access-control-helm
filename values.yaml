@@ -6,137 +6,71 @@
 
 ### --- KEYCLOAK --- ###
 
-keycloak:
-  enabled: true
-
-  # Optionally override the fully qualified name
-  fullnameOverride: "access-control-keycloak"
-
-  image:
-    # The Keycloak image repository
-    # repository: quay.io/keycloak/keycloak
-    repository: ghcr.io/tefiros/keycloak-opa-authz-demo
-    # Overrides the Keycloak image tag whose default is the chart appVersion
-    # tag: ""
-    tag: "1.0.0"
-    # The Keycloak image pull policy
-    # pullPolicy: IfNotPresent
-    pullPolicy: Always
-
-  service:
-    # Annotations for headless and HTTP Services
-    annotations: {}
-    # Additional labels for headless and HTTP Services
-    labels: {}
-    # key: value
-    # The Service type
-    type: ClusterIP
-    # Optional IP for the load balancer. Used for services of type LoadBalancer only
-    loadBalancerIP: ""
-    # The http Service port
-    httpPort: 80
-    # The HTTP Service node port if type is NodePort
-    httpNodePort: null
-    # The HTTPS Service port
-    httpsPort: 8443
-    # The HTTPS Service node port if type is NodePort
-    httpsNodePort: null
-    # The WildFly management Service port
-    httpManagementPort: 9990
-    # The WildFly management Service node port if type is NodePort
-    httpManagementNodePort: null
-    # Additional Service ports, e. g. for custom admin console
-    extraPorts: []
-    # When using Service type LoadBalancer, you can restrict source ranges allowed
-    # to connect to the LoadBalancer, e. g. will result in Security Groups
-    # (or equivalent) with inbound source ranges allowed to connect
-    loadBalancerSourceRanges: []
-    # When using Service type LoadBalancer, you can preserve the source IP seen in the container
-    # by changing the default (Cluster) to be Local.
-    # See https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-    externalTrafficPolicy: "Cluster"
-    # Session affinity
-    # See https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
-    sessionAffinity: ""
-    # Session affinity config
-    sessionAffinityConfig: {}
-
-  postgresql:
-    # If `true`, the Postgresql dependency is enabled
-    enabled: true
-    # Define service name where PostgreSQL is reachable
-    fullname: access-control-postgresql
-    # PostgreSQL User to create
-    postgresqlUsername: keycloak
-    # PostgreSQL Password for the new user
-    postgresqlPassword: keycloak
-    # PostgreSQL Database to create
-    postgresqlDatabase: keycloak
-    # PostgreSQL network policy configuration
-    networkPolicy:
-      enabled: false
+keycloakx:
+  enabled: false
 
 ### --- --- ###
 
 ### --- KEYCLOAK CLI  --- ###
 
-# keycloak-config-cli:
-#   enabled: false
+keycloak-config-cli:
+  enabled: false
 
-#   image:
-#     repository: docker.io/adorsys/keycloak-config-cli
-#     pullPolicy: Always
+  image:
+    repository: quay.io/adorsys/keycloak-config-cli
+    tag: "{{ .Chart.AppVersion }}-17.0.1"
+    pullPolicy: Always
 
-#   env:
-#     KEYCLOAK_URL: http://keycloak:8080
-#     KEYCLOAK_USER: admin
-#     IMPORT_PATH: /config/
+  env:
+    KEYCLOAK_URL: http://keycloak:8080
+    KEYCLOAK_USER: admin
+    IMPORT_PATH: /config/
   
-#   secrets: {}
-#   #  KEYCLOAK_PASSWORD:
+  secrets: {}
+  #  KEYCLOAK_PASSWORD:
 
-#   # Specifies an existing secret to be used for the admin password
-#   existingSecret: ""
+  # Specifies an existing secret to be used for the admin password
+  existingSecret: ""
 
-#   # The key in the existing secret that stores the password
-#   existingSecretKey: password
+  # The key in the existing secret that stores the password
+  existingSecretKey: password
 
-#   securityContext: {}
-#   containerSecurityContext: {}
+  securityContext: {}
+  containerSecurityContext: {}
 
-#   ## Additional pod labels
-#   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-#   podLabels: {}
+  ## Additional pod labels
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  podLabels: {}
 
-#   ## Extra Annotations to be added to pod
-#   podAnnotations: {}
-#   # New section for existing secrets
-#   existingSecrets:
-#   # - name: my-existing-secret
-#   #   key: my-secret-key
-#   #   envVar: MY_ENV_VAR
+  ## Extra Annotations to be added to pod
+  podAnnotations: {}
+  # New section for existing secrets
+  existingSecrets:
+  # - name: my-existing-secret
+  #   key: my-secret-key
+  #   envVar: MY_ENV_VAR
 
-#   config: {}
-#     # <realm name>:
-#     #   inline:
-#     #     realm: <realm name>
-#     #     clients: []
-#     # <realm name>:
-#     #   file: <path>
+  config: {}
+    # <realm name>:
+    #   inline:
+    #     realm: <realm name>
+    #     clients: []
+    # <realm name>:
+    #   file: <path>
 
-#   existingConfigSecret: ""
+  existingConfigSecret: ""
 
-#   # Add additional volumes, e.g. for custom secrets
-#   extraVolumes: |
-#     - name: keycloak-config
-#       configMap:
-#         name: keycloak-config
+  # Add additional volumes, e.g. for custom secrets
+  extraVolumes: |
+    - name: keycloak-config
+      configMap:
+        name: keycloak-config
 
-#   # Add additional volumes mounts, e. g. for custom secrets
-#   extraVolumeMounts: |
-#     - name: keycloak-config
-#       mountPath: "/config/keycloak-opa.yaml"
-#       subPath: keycloak-opa.yaml
+  # Add additional volumes mounts, e. g. for custom secrets
+  extraVolumeMounts: |
+    - name: keycloak-config
+      mountPath: "/config/keycloak-opa.yaml"
+      subPath: keycloak-opa.yaml
 
 ### --- --- ###
 
