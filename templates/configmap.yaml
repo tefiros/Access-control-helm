@@ -35,7 +35,7 @@ data:
     authenticatorConfig:
       - alias: "opa-browser-auth-default"
         config:
-          opa-url: "http://keycloak-opa:8181/v1/data/iam/keycloak/allow"
+          opa-url: "http://access-control-opa:8181/v1/data/iam/keycloak/allow"
           opa-policy-path: "/keycloak/realms/{realm}/{action}/allow"
           opa-context-attributes: "remoteAddress,protocol,grantType"
           opa-user-attributes: "email,emailVerified"

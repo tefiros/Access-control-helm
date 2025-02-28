@@ -11,4 +11,11 @@ echo "Done"
 
 echo ""
 
+echo "2. Deleting PersistentVolumeClaims..."
+kubectl get pvc -n default --no-headers=true | awk '/data-access-control/{print $1}' | xargs kubectl delete -n default pvc
+sleep 1
+echo "Done"
+
+echo ""
+
 echo "All done"
