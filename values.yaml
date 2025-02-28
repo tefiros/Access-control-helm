@@ -118,7 +118,6 @@ keycloakx:
   # command: []
   command:
     - "--verbose"
-    - "start-dev"
     - "--http-enabled=true"
     - "--http-port=8080"
     - "--metrics-enabled=true"
