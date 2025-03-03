@@ -117,7 +117,9 @@ keycloakx:
   ## Overrides the default entrypoint of the Keycloak container
   # command: []
   command:
+    - "/opt/keycloak/bin/kc.sh"
     - "--verbose"
+    - "start-dev"
     - "--http-enabled=true"
     - "--http-port=8080"
     - "--metrics-enabled=true"
