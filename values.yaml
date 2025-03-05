@@ -116,25 +116,8 @@ keycloakx:
 
   ## Overrides the default entrypoint of the Keycloak container
   # command: []
-  command:
-    - "/opt/keycloak/bin/kc.sh"
-    - "--verbose"
-    - "start-dev"
-    - "--http-enabled=true"
-    - "--http-port=8080"
-    - "--metrics-enabled=true"
-    - "--health-enabled=true"
-    - "--cache=local"
-    - "--proxy=edge"
-    - "--features=preview"
-    - "--spi-events-listener-jboss-logging-success-level=info"
-    - "--spi-events-listener-jboss-logging-error-level=warn"
-    - "--log-level=INFO,com.thomasdarimont.keycloak:DEBUG,org.keycloak.services.clientpolicy:DEBUG"
-    - "--spi-access-policy-opa-url=http://access-control-opa:8181/v1/data"
-    - "--spi-access-policy-opa-policy-path=/keycloak/realms/{realm}/{action}/allow"
-    - "--spi-access-policy-opa-context-attributes=remoteAddress,protocol,grantType"
-    - "--spi-access-policy-opa-user-attributes=email,emailVerified"
-    - "--spi-access-policy-opa-request-headers=Authorization,Content-Type,Custom-Header"
+  command: []
+
 
   ## Overrides the default args for the Keycloak container
   args: []
@@ -287,7 +270,7 @@ keycloakx:
     labels: {}
     # key: value
     # The Service type
-    type: ClusterIP
+    type: LoadBalancer
     # Optional IP for the load balancer. Used for services of type LoadBalancer only
     loadBalancerIP: ""
     # The http Service port
@@ -307,7 +290,7 @@ keycloakx:
     # When using Service type LoadBalancer, you can preserve the source IP seen in the container
     # by changing the default (Cluster) to be Local.
     # See https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-    externalTrafficPolicy: "Cluster"
+    externalTrafficPolicy: "Local"
     # Session affinity
     # See https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
     sessionAffinity: ""
@@ -465,10 +448,10 @@ keycloakx:
       enabled: true
 
   metrics:
-    enabled: true
+    enabled: false
 
   health:
-    enabled: true
+    enabled: false
 
   http:
     # For backwards compatibility reasons we set this to the value used by previous Keycloak versions.
