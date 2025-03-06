@@ -5,9 +5,6 @@ dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 16.4.14
-- name: keycloak-config-cli
-  repository: https://jkroepke.github.io/helm-charts/
-  version: 1.2.3
 - name: opa-kube-mgmt
   repository: https://open-policy-agent.github.io/kube-mgmt/charts
   version: 8.5.11
@@ -17,5 +14,5 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:20b2d8c4ced0ee42438c9ad6f8576a8602672e5b8b81f078c45382fdbfe8d293
-generated: "2025-02-28T13:39:51.447865248+01:00"
+digest: sha256:61538d190fde9c0d2084ad8253384ed74141301b51d342fe4a53e08a7c97d968
+generated: "2025-03-06T12:21:46.697332785+01:00"
