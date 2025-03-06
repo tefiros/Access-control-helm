@@ -12,7 +12,7 @@ echo "Done"
 echo ""
 
 echo "2. Installing Helm Chart..."
-helm install access-control ..
+helm install --debug access-control ..
 sleep 1
 echo "Done"
 
