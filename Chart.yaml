@@ -35,8 +35,8 @@ dependencies:
     repository: "https://charts.bitnami.com/bitnami"
   - name: keycloak-config-cli
     condition: keycloak-config-cli.enabled
-    version: 1.2.3
-    repository: "https://jkroepke.github.io/helm-charts/"
+    version: 6.4.1-SNAPSHOT
+    repository: "file://./charts"
   - name: opa-kube-mgmt
     condition: opa-kube-mgmt.enabled
     version: 8.5.11
