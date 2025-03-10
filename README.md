@@ -1,6 +1,6 @@
-# Access Control Helm Chart (WIP)
+# Access Control Helm Chart
 
-## Current version: 1.0.0 (February 11th, 2025).
+## Current version: 1.0.0.
 
 ## Installation
 
