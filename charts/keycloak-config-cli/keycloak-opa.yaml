@@ -1,10 +1,10 @@
-realm: keycloak-opa
+realm: "keycloak-opa"
 enabled: true
-displayName: keycloak-opa
+displayName: "keycloak-opa"
 
 loginWithEmailAllowed: true
 resetPasswordAllowed: true
-sslRequired: $(env:SSL_REQUIRED:-EXTERNAL)
+
 
 loginTheme: keycloak
 accountTheme: keycloak.v3
@@ -55,22 +55,7 @@ authenticationFlows:
     authenticationExecutions:
       - authenticator: auth-username-password-form
         requirement: REQUIRED
-      - flowAlias: "2FA Forms"
-        requirement: CONDITIONAL
-        authenticatorFlow: true
 
-  - alias: "2FA Forms"
-    description: "Sub-Flow to ask user for 2FA"
-    providerId: basic-flow
-    topLevel: false
-    builtIn: false
-    authenticationExecutions:
-      - authenticator: conditional-user-configured
-        requirement: REQUIRED
-      - authenticator: auth-otp-form
-        requirement: ALTERNATIVE
-      - authenticator: auth-recovery-authn-code-form
-        requirement: ALTERNATIVE
 
 #  - alias: "OPA: direct grant"
 #    description: "OpenID Connect Resource Owner Grant with OPA"
@@ -103,7 +88,7 @@ authenticationFlows:
 authenticatorConfig:
   - alias: "opa-browser-auth-default"
     config:
-      opa-url: "http://keycloak-opa:8181/v1/data/iam/keycloak/allow"
+      opa-url: "http://access-control-opa:8181:8181/v1/data/iam/keycloak/allow"
       opa-policy-path: "/keycloak/realms/{realm}/{action}/allow"
       opa-context-attributes: "remoteAddress,protocol,grantType"
       opa-user-attributes: "email,emailVerified"

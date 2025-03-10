@@ -33,15 +33,17 @@ resources: {}
 #   memory: "1024Mi"
 
 env:
-  KEYCLOAK_URL: http://access-control-keycloakx-http:8080
+  KEYCLOAK_URL: http://access-control-keycloakx-http:8080/auth
   KEYCLOAK_USER: admin
-  IMPORT_PATH: /config/*
+  IMPORT_PATH: /config/
+  KEYCLOAK_AVAILABILITYCHECK_ENABLED: "true"
+  KEYCLOAK_AVAILABILITYCHECK_TIMEOUT: "120s"
 
 secrets: {}
-#  KEYCLOAK_PASSWORD:
+  # KEYCLOAK_PASSWORD: admin
 
 # Specifies an existing secret to be used for the admin password
-existingSecret: ""
+existingSecret: "access-control-keycloakx-admin-creds"
 
 # The key in the existing secret that stores the password
 existingSecretKey: password
@@ -61,7 +63,10 @@ existingSecrets:
 #   key: my-secret-key
 #   envVar: MY_ENV_VAR
 
-config: {}
+config: 
+  keycloak-opa:
+    file: keycloak-opa.yaml
+
   # <realm name>:
   #   inline:
   #     realm: <realm name>
@@ -72,13 +77,8 @@ config: {}
 existingConfigSecret: ""
 
   # Add additional volumes, e.g. for custom secrets
-extraVolumes: |
-  - name: keycloak-config-volume
-    configMap:
-      name: keycloak-config
+extraVolumes: []
+
 
 # Add additional volumes mounts, e. g. for custom secrets
-extraVolumeMounts: |
-  - name: keycloak-config-volume
-    mountPath: /config/keycloak-opa.yaml
-    subPath: keycloak-opa.yaml
+extraVolumeMounts: []
