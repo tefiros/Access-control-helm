@@ -1,0 +1,18 @@
+dependencies:
+- name: keycloakx
+  repository: https://codecentric.github.io/helm-charts
+  version: 7.0.1
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.4.14
+- name: opa-kube-mgmt
+  repository: https://open-policy-agent.github.io/kube-mgmt/charts
+  version: 8.5.11
+- name: apisix
+  repository: https://charts.apiseven.com
+  version: 2.10.0
+- name: data-security-service
+  repository: https://candil-data-fabric.github.io/data-security-service-helm
+  version: 1.1.1
+digest: sha256:61538d190fde9c0d2084ad8253384ed74141301b51d342fe4a53e08a7c97d968
+generated: "2025-03-06T12:21:46.697332785+01:00"
