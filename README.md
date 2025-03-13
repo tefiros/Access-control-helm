@@ -9,13 +9,13 @@
 First, add the Helm repository:
 
 ```bash
-$ helm repo add access-control-helm https://tefiros.github.io/access-control-helm/
+$ helm repo add access-control-helm https://tefiros.github.io/Access-control-helm/
 ```
 
 Then, install the Helm Chart:
 
 ```bash
-$ helm install access-control access-control-helm/access-control
+$ helm install access-control Access-control-helm/access-control
 ```
 
 The chart will be installed using the default values. Use the provided [`values.yaml`](values.yaml) file in this repository as template to upgrade the installation with your desired parameters:
