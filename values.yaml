@@ -592,6 +592,9 @@ postgresql:
         username: keycloak
         password: keycloak
         database: keycloak
+  primary:
+    extendedConfiguration: |
+      huge_pages = off
 
 ### --- --- ###
 
