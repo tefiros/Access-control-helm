@@ -35,7 +35,7 @@ $ helm uninstall access-control
 First, clone the repository:
 
 ```bash
-$ git clone https://github.com/tefiros/access-control-helm.git
+$ git clone https://github.com/tefiros/Access-control-helm.git
 ```
 
 Once cloned, edit the [`values.yaml`](values.yaml) file to match your deployment needs and run the following command:
