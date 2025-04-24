@@ -5,7 +5,6 @@ displayName: "keycloakOpa"
 loginWithEmailAllowed: true
 resetPasswordAllowed: true
 
-
 loginTheme: keycloak
 accountTheme: keycloak.v3
 emailTheme: keycloak
@@ -16,80 +15,66 @@ eventsListeners:
 
 eventsEnabled: true
 
-#browserFlow: "browser opa"
-#directGrantFlow: "direct grant opa"
+clients:
+  - clientId: kck
+    protocol: openid-connect
+    name: kck
+    description: "kck"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: true
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: true
+    fullScopeAllowed: false
+    secret: "secret"
 
-authenticationFlows:
-  - alias: "opa-browser"
-    description: "OPA Browser Flow"
-    providerId: basic-flow
-    builtIn: false
-    topLevel: true
-    authenticationExecutions:
-      - flowAlias: "Login"
-        requirement: REQUIRED
-        authenticatorFlow: true
-      - authenticator: auth-opa-authz
-        requirement: REQUIRED
-        authenticatorConfig: "opa-browser-auth-default"
-
-  - alias: "Login"
-    description: "Sub-Flow to ask user for username an password"
-    providerId: basic-flow
-    topLevel: false
-    builtIn: false
-    authenticationExecutions:
-      - authenticator: auth-cookie
-        requirement: ALTERNATIVE
-      - authenticator: identity-provider-redirector
-        requirement: ALTERNATIVE
-      - flowAlias: "Identity Forms"
-        requirement: ALTERNATIVE
-        autheticatorFlow: true
-
-  - alias: "Identity Forms"
-    description: "Sub-Flow to ask user for username an password"
-    providerId: basic-flow
-    topLevel: false
-    builtIn: false
-    authenticationExecutions:
-      - authenticator: auth-username-password-form
-        requirement: REQUIRED
-
-
-#  - alias: "OPA: direct grant"
-#    description: "OpenID Connect Resource Owner Grant with OPA"
-#    providerId: "basic-flow"
-#    topLevel: true
-#    authenticationExecutions:
-#      - authenticator: "direct-grant-validate-username"
-#        requirement: "REQUIRED"
-#        priority: 10
-#      - authenticator: "direct-grant-validate-password"
-#        requirement: "REQUIRED"
-#        priority: 20
-#      - flowAlias: "OPA: Direct Grant - Conditional OTP"
-#        authenticatorFlow: true
-#        requirement: "CONDITIONAL"
-#        priority: 30
-#
-#  - alias: "OPA: Direct Grant - Conditional OTP"
-#    description: "Flow to determine if the OTP is required for the authentication with OPA"
-#    providerId: "basic-flow"
-#    topLevel: false
-#    authenticationExecutions:
-#      - authenticator: "conditional-user-configured"
-#        requirement: "REQUIRED"
-#        priority: 10
-#      - authenticator: "direct-grant-validate-otp"
-#        requirement: "REQUIRED"
-#        priority: 20
-
-authenticatorConfig:
-  - alias: "opa-browser-auth-default"
+userFederationProviders:
+  - displayName: "ldap"
+    providerName: "ldap"
     config:
-      opa-url: "http://access-control-opa:8181:8181/v1/data/iam/keycloakx/allow"
-      opa-policy-path: "/keycloakx/realms/{realm}/{action}/allow"
-      opa-context-attributes: "remoteAddress,protocol,grantType"
-      opa-user-attributes: "email,emailVerified"
-      opa-request-headers: "Authorization,Content-Type,Custom-Header"
+      enabled: "true"
+      vendor: "other"
+      connectionUrl: "ldap://access-control-openldap"
+      useTruststoreSpi: "always"
+      connectionPooling: "false"
+      bindType: "simple"
+      bindDn: "cn=admin,dc=example,dc=com"
+      bindCredential: "Acc3ss@C0ntr0L_"
+      editMode: "READ_ONLY"
+      usersDn: "ou=users,dc=example,dc=com"
+      usernameLDAPAttribute: "uid"
+      rdnLDAPAttribute: "uid"
+      uuidLDAPAttribute: "entryUUID"
+      userObjectClasses: "inetOrgPerson, organizationalPerson"
+      searchScope: "1"
+      pagination: "false"
+      referrals: "ignore"
+      importEnabled: "true"
+      syncRegistrations: "true"
+      allowKerberosAuthentication: "false"
+      useKerberosForPasswordAuthentication: "false"
+      cachePolicy: "DEFAULT"
+      validatePasswordPolicy: "false"
+      trustEmail: "false"
+      enablePasswordModifyExtendedOp: "false"
+
+userFederationMappers:
+  - name: "roles"
+    id: "roleMapper"
+    federationProviderDisplayName: "ldap"
+    federationMapperType: "role-ldap-mapper"
+    config:
+      roles.dn: "ou=roles,dc=example,dc=com"
+      role.name.ldap.attribute: "cn"
+      role.object.classes: "posixGroup"
+      membership.ldap.attribute: "memberUid"
+      membership.attribute.type: "UID"
+      membership.user.ldap.attribute: "uid" 
+      mode: "READ_ONLY"
+      user.roles.retrieve.strategy: "LOAD_ROLES_BY_MEMBER_ATTRIBUTE"
+      memberof.ldap.attribute: "memberOf"
+      use.realm.roles.mapping: "true"
+
+
+
