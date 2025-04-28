@@ -3,7 +3,7 @@ entries:
   access-control:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-04-24T13:56:26.61335632Z"
+    created: "2025-04-28T08:03:44.464453138Z"
     dependencies:
     - condition: keycloakx.enabled
       name: keycloakx
@@ -26,10 +26,10 @@ entries:
       repository: https://candil-data-fabric.github.io/data-security-service-helm
       version: 1.1.1
     description: Access Control - A Helm Chart for Kubernetes
-    digest: e87576624307afcc9851461e6c21a7cd6bd7567bfb9c0f2a193f8b5dbd6a5663
+    digest: a6f83a56e923abf8e07127a0e657c2fd2e3fa4504f1bd5195fbeef5ca18313ad
     name: access-control
     type: application
     urls:
     - https://tefiros.github.io/Access-control-helm/access-control-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-24T13:56:26.597211596Z"
+generated: "2025-04-28T08:03:44.44914738Z"
