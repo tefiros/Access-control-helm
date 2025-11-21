@@ -14,5 +14,8 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:61538d190fde9c0d2084ad8253384ed74141301b51d342fe4a53e08a7c97d968
-generated: "2025-03-06T12:21:46.697332785+01:00"
+- name: opa-service
+  repository: https://tefiros.github.io/opa-service-helm
+  version: 1.0.0
+digest: sha256:71dd43def467c8d9a12f1014e4adf76562ec5508fec5a9f740b2ee570315f36a
+generated: "2025-11-19T11:18:04.730309+01:00"

@@ -9,3 +9,4 @@ spec:
     config:
       host: http://access-control-opa.default.svc.cluster.local:8181 # Point to OPA service.
       policy: AccessControl
+      with_body: true

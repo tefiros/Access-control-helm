@@ -1,0 +1,18 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-route
+spec:
+  http:
+  - name: simple-api
+    match:
+      paths:
+      - /simple
+      methods:
+      - POST
+      - GET
+    backends:
+    - serviceName: simple-api
+      servicePort: 5000
+    plugin_config_name: access-control-apisix-opa-plugin-config
+
