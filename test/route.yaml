@@ -1,18 +1,18 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: apisix-route
+  name: apisix-route-graphdb
 spec:
   http:
-  - name: simple-api
+  - name: graphdb
     match:
       paths:
-      - /simple
+      - /repositories/test
       methods:
       - POST
       - GET
     backends:
-    - serviceName: simple-api
-      servicePort: 5000
+    - serviceName: graphdb
+      servicePort: 7200
     plugin_config_name: access-control-apisix-opa-plugin-config
 
