@@ -4,6 +4,210 @@
 
 # This file is used for passing values to dependencies.
 
+### --- OPENLDAP --- ###
+
+openldap:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: osixia/openldap
+    tag: "1.5.0"
+    pullPolicy: IfNotPresent
+
+  adminPassword: "Acc3ss@C0ntr0L_"
+  configPassword: "Acc3ss@C0ntr0L_"
+
+  
+  customLdifFiles:
+      01-default-group.ldif: |-
+        # Entry 2: ou=groups,dc=example,dc=org
+        dn: ou=groups,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: organizationalUnit
+        ou: groups
+
+        # Entry 3: cn=default,ou=groups,dc=example,dc=org
+        dn: cn=default,ou=groups,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: posixGroup
+        cn: default
+        gidNumber: 500
+        memberUid: user1
+        memberUid: user2
+        memberUid: user3
+        memberUid: user4
+        memberUid: user5
+        memberUid: user6
+
+        # Entry 4: ou=roles,dc=example,dc=org
+        dn: ou=roles,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: organizationalUnit
+        ou: roles
+
+        # Entry 5: cn=admin,ou=roles,dc=example,dc=org
+        dn: cn=admin,ou=roles,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: posixGroup
+        cn: admin
+        gidNumber: 501
+        memberUid: user1
+        memberUid: user2
+        memberUid: user3
+
+        # Entry 6: cn=developer,ou=roles,dc=example,dc=org
+        dn: cn=developer,ou=roles,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: posixGroup
+        cn: developer
+        gidNumber: 502
+        memberUid: user1
+        memberUid: user2
+        memberUid: user6
+
+        # Entry 7: cn=financial,ou=roles,dc=example,dc=org
+        dn: cn=financial,ou=roles,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: posixGroup
+        cn: financial
+        gidNumber: 503
+        memberUid: user1
+        memberUid: user2
+        memberUid: user4
+
+        # Entry 8: cn=support,ou=roles,dc=example,dc=org
+        dn: cn=support,ou=roles,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: posixGroup
+        cn: support
+        gidNumber: 504
+        memberUid: user5
+
+        # Entry 9: ou=users,dc=example,dc=org
+        dn: ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: organizationalUnit
+        ou: users
+
+        # Entry 10: cn=user1,ou=users,dc=example,dc=org
+        dn: cn=user1,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user1
+        uid: user1
+        uidNumber: 1000
+        gidNumber: 500
+        givenName: User
+        sn: Number 1
+        homeDirectory: /home/users/user1
+        userPassword: {MD5}JMnhXlKvxHwiW3V+e+4fnQ==
+
+        # Entry 11: cn=user2,ou=users,dc=example,dc=org
+        dn: cn=user2,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user2
+        uid: user2
+        uidNumber: 1001
+        gidNumber: 500
+        givenName: User
+        sn: Number 2
+        homeDirectory: /home/users/user2
+        userPassword: {MD5}fljWO2AZfOtVocSHmJo3IA==
+
+        # Entry 12: cn=user3,ou=users,dc=example,dc=org
+        dn: cn=user3,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user3
+        uid: user3
+        uidNumber: 1002
+        gidNumber: 500
+        givenName: User
+        sn: Number 3
+        homeDirectory: /home/users/user3
+        userPassword: {MD5}kod69wpF/Wou1/6B4SNreA==
+
+        # Entry 13: cn=user4,ou=users,dc=example,dc=org
+        dn: cn=user4,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user4
+        uid: user4
+        uidNumber: 1003
+        gidNumber: 500
+        givenName: User
+        sn: Number 4
+        homeDirectory: /home/users/user4
+        userPassword: {MD5}PwLr49eSmwkePYzP3i87xg==
+
+        # Entry 14: cn=user5,ou=users,dc=example,dc=org
+        dn: cn=user5,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user5
+        uid: user5
+        uidNumber: 1004
+        gidNumber: 500
+        givenName: User
+        sn: Number 5
+        homeDirectory: /home/users/user5
+        userPassword: {MD5}CnkYQvUqCs+7OngzeMBmuA==
+
+        # Entry 15: cn=user6,ou=users,dc=example,dc=org
+        dn: cn=user6,ou=users,dc=example,dc=org
+        changetype: add
+        objectClass: top
+        objectClass: inetOrgPerson
+        objectClass: posixAccount
+        cn: user6
+        uid: user6
+        uidNumber: 1005
+        gidNumber: 500
+        givenName: User
+        sn: Number 6
+        homeDirectory: /home/users/user6
+        userPassword: {MD5}r/7Dtkz5BJI3eoEUyG/Akw==
+
+  ltb-passwd:
+    enabled: false
+
+  service:
+    # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+    type: ClusterIP
+    # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+
+  # customLdifCm: access-control-openldap-customldif
+
+  phpldapadmin:
+    enabled: true
+    ingress:
+      enabled: false
+    service:
+      type: NodePort
+      nodePort: 30080
+    env:
+      PHPLDAPADMIN_LDAP_HOSTS: "access-control-openldap.default.svc.cluster.local"
+      PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
+
 ### --- KEYCLOAK --- ###
 
 keycloakx:
