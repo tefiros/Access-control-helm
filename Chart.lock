@@ -17,5 +17,8 @@ dependencies:
 - name: opa-service
   repository: https://tefiros.github.io/opa-service-helm
   version: 1.0.0
-digest: sha256:71dd43def467c8d9a12f1014e4adf76562ec5508fec5a9f740b2ee570315f36a
-generated: "2025-11-19T11:18:04.730309+01:00"
+- name: openldap
+  repository: https://jp-gouin.github.io/helm-openldap/
+  version: 2.0.4
+digest: sha256:13605e22c98a7654d702cf09a580647d8895c9208214a969f5a3cefba9f36639
+generated: "2025-12-05T10:22:21.736795+01:00"

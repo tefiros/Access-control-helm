@@ -49,3 +49,8 @@ dependencies:
     condition: opa-service.enabled
     version: 1.0.0
     repository: "https://tefiros.github.io/opa-service-helm"
+  - name: openldap
+    condition: openldap.enabled
+    version: 2.0.4
+    repository: "https://jp-gouin.github.io/helm-openldap/"
+
