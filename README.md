@@ -1,6 +1,6 @@
 # Access Control Helm Chart
 
-## Current version: 1.0.0.
+## Current version: 1.0.1.
 
 ## Installation
 
