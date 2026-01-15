@@ -1,0 +1,18 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-route-graphdb
+spec:
+  http:
+  - name: graphdb
+    match:
+      paths:
+      - /repositories/test
+      methods:
+      - POST
+      - GET
+    backends:
+    - serviceName: graphdb
+      servicePort: 7200
+    plugin_config_name: access-control-apisix-opa-plugin-config
+

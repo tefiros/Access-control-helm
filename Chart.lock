@@ -14,5 +14,11 @@ dependencies:
 - name: data-security-service
   repository: https://candil-data-fabric.github.io/data-security-service-helm
   version: 1.1.1
-digest: sha256:61538d190fde9c0d2084ad8253384ed74141301b51d342fe4a53e08a7c97d968
-generated: "2025-03-06T12:21:46.697332785+01:00"
+- name: opa-service
+  repository: https://tefiros.github.io/opa-service-helm
+  version: 1.0.0
+- name: openldap
+  repository: https://jp-gouin.github.io/helm-openldap/
+  version: 2.0.4
+digest: sha256:13605e22c98a7654d702cf09a580647d8895c9208214a969f5a3cefba9f36639
+generated: "2025-12-05T10:22:21.736795+01:00"
