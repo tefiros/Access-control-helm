@@ -1,4 +1,4 @@
-package keycloakx.realms.keycloakOpa.access
+package AccessControl
 
 import rego.v1
 

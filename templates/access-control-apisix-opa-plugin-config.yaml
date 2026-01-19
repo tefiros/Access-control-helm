@@ -7,6 +7,6 @@ spec:
   - name: opa
     enable: true
     config:
-      host: http://opa-service.default.svc.cluster.local:8000 # Point to OPA service.
+      host: http://access-control-opa-service.default.svc.cluster.local:8000 # Point to OPA service.
       policy: AccessControl
       with_body: true
