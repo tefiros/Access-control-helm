@@ -29,3 +29,26 @@ find_forbidden_field = field {
 contains(text, sub) {
     indexof(text, sub) >= 0
 }
+
+has_anomalous_receipt {
+    resp := http.send({
+        "method": "GET",
+        "url": "http://x:x/RECEIPT_TEST?producer_id=eq.WhiteShark&select=id,content",
+        "force_json_decode": true
+    })
+
+    some i
+    receipt := resp.body[i]
+
+    some j
+    receipt.content.network_metrics[j].anomaly.is_anomalous
+}
+
+message = msg {
+    has_anomalous_receipt
+    msg := "Access denied: anomalous network metrics detected in receipts."
+}
+
+allow = false {
+    has_anomalous_receipt
+}

@@ -7,7 +7,7 @@ spec:
   - name: graphdb
     match:
       paths:
-      - /repositories/test
+      - /repositories/Test
       methods:
       - POST
       - GET
