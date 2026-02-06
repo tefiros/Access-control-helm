@@ -1,0 +1,32 @@
+auth:
+  username: admin
+  password: adminpassword
+  erlangCookie: supersecretcookie
+
+extraPlugins: |
+  rabbitmq_management
+  rabbitmq_auth_backend_oauth2
+
+service:
+  type: NodePort
+  nodePorts:
+    amqp: 30672
+    manager: 31672
+
+extraConfiguration: |
+  ## ---- AUTH BACKENDS ----
+  auth_backends.1 = rabbit_auth_backend_oauth2
+  auth_backends.2 = rabbit_auth_backend_internal
+
+  ## ---- OAUTH2 / KEYCLOAK ----
+  auth_oauth2.resource_server_id = rabbitmq
+  auth_oauth2.issuer = http://access-control-keycloakx:8080/auth/realms/master
+  auth_oauth2.preferred_username_claims.1 = preferred_username
+  auth_oauth2.https.peer_verification = verify_none
+
+  ## ---- MANAGEMENT UI ----
+  management.oauth_enabled = true
+  management.oauth_client_id = rabbitmq-management
+  management.oauth_scopes = openid profile
+  management.oauth_provider_url = http://access-control-keycloakx:8080/auth/realms/master
+

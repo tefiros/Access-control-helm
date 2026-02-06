@@ -43,3 +43,7 @@ allow if{
         isRealm("keycloakOpa")
         isGrantType("password")
 }
+allow if{
+        isClient("rabbitmq-management")
+        isRealm("keycloakOpa")
+}
