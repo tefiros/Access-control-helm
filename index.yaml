@@ -3,7 +3,7 @@ entries:
   access-control:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-02-06T11:09:07.974257165Z"
+    created: "2026-03-18T03:17:26.983454746Z"
     dependencies:
     - condition: keycloakx.enabled
       name: keycloakx
@@ -34,10 +34,10 @@ entries:
       repository: https://jp-gouin.github.io/helm-openldap/
       version: 2.0.4
     description: Access Control - A Helm Chart for Kubernetes
-    digest: 618409787eadd8cb304b129806c1ec4b71653936034abfc09d4a0bd30880d720
+    digest: 407c18562413ea1d992a8eab3500849774e9c964b4f85823b6fdbaf5d321029e
     name: access-control
     type: application
     urls:
     - https://tefiros.github.io/Access-control-helm/access-control-1.0.0.tgz
     version: 1.0.0
-generated: "2026-02-06T11:09:07.955923476Z"
+generated: "2026-03-18T03:17:26.964956345Z"
