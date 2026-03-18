@@ -1,0 +1,9 @@
+{
+  "auth-policy:policy": {
+    "description": "Policy: Deny SPARQL queries containing forbidden fields",
+    "language": "rego",
+    "pac": "package AccessControl\n\ndefault allow = true\ndefault message = \"\"\n\n# Set of forbidden fields\nblocked_fields[field] {\n    field = \"mw:kneVendorName\"\n}\n\n# Main rule: deny if a forbidden field is found in the SPARQL query\nallow = false {\n    forbidden_field := find_forbidden_field\n}\n\n# Dynamic denial message\nmessage = msg {\n    forbidden_field := find_forbidden_field\n    msg := sprintf(\"Access denied: the field '%v' is not authorized.\", [forbidden_field])\n}\n\n# Returns the forbidden field that appears in the SPARQL query\nfind_forbidden_field = field {\n    blocked_fields[field]\n    contains(input.request.body, field)\n}\n\n# Helper: string contains() function compatible with older Rego engines\ncontains(text, sub) {\n    indexof(text, sub) >= 0\n}\n",
+    "owner": "urn:example:user:lucia",
+    "version": "v1.0.0"
+  }
+}

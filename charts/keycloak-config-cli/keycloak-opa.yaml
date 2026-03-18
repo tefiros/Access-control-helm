@@ -15,11 +15,42 @@ eventsListeners:
 
 eventsEnabled: true
 
+clientScopes:
+  - name: "rabbitmq.read"
+    description: "RabbitMQ read permissions"
+    protocol: "openid-connect"
+    attributes:
+      "include.in.token.scope": "true"
+      "display.on.consent.screen": "false"
+  - name: "rabbitmq.write"
+    description: "RabbitMQ write permissions"
+    protocol: "openid-connect"
+    attributes:
+      "include.in.token.scope": "true"
+      "display.on.consent.screen": "false"
+  - name: "rabbitmq.configure"
+    description: "RabbitMQ configure permissions"
+    protocol: "openid-connect"
+    attributes:
+      "include.in.token.scope": "true"
+      "display.on.consent.screen": "false"
+  - name: "rabbitmq-audience"
+    description: "RabbitMQ audience claim"
+    protocol: "openid-connect"
+    protocolMappers:  
+      - name: "rabbitmq-aud-mapper"
+        protocol: "openid-connect"
+        protocolMapper: "oidc-audience-mapper"
+        consentRequired: false
+        config:
+          "included.custom.audience": "rabbitmq"
+          "access.token.claim": "true"
+
 clients:
   - clientId: kck
     protocol: openid-connect
     name: kck
-    description: "kck"
+    description: "kck - AMQP applications"
     enabled: true
     publicClient: false
     standardFlowEnabled: true
@@ -28,6 +59,40 @@ clients:
     serviceAccountsEnabled: true
     fullScopeAllowed: false
     secret: "secret"
+    defaultClientScopes:
+      - "profile"
+      - "email"
+      - "rabbitmq.read"
+      - "rabbitmq.write"
+      - "rabbitmq-audience"
+  - clientId: "rabbitmq-producer"
+    protocol: openid-connect
+    name: "RabbitMQ Producer Client"
+    description: "Client for RabbitMQ producers"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: false
+    directAccessGrantsEnabled: true
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: true
+    fullScopeAllowed: false
+    secret: "producer-secret-change-me"
+    defaultClientScopes:
+      - "rabbitmq.write"
+  - clientId: "rabbitmq-consumer"
+    protocol: openid-connect
+    name: "RabbitMQ Consumer Client"
+    description: "Client for RabbitMQ consumers"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: false
+    directAccessGrantsEnabled: true
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: true
+    fullScopeAllowed: false
+    secret: "consumer-secret-change-me"
+    defaultClientScopes:
+      - "rabbitmq.read"
   - clientId: rabbitmq-management
     name: rabbitmq-management
     description: "rabbitmq-management"
@@ -122,6 +187,3 @@ userFederationMappers:
       user.roles.retrieve.strategy: "LOAD_ROLES_BY_MEMBER_ATTRIBUTE"
       memberof.ldap.attribute: "memberOf"
       use.realm.roles.mapping: "true"
-
-
-
