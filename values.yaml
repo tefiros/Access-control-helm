@@ -1159,7 +1159,7 @@ data-security-service:
 opa-service:
   enabled: true
   image:
-    tag: "1.1.2"
+    tag: "1.1.1"
   service:
     type: NodePort
   envVars:

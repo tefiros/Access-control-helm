@@ -47,7 +47,7 @@ dependencies:
     repository: "https://candil-data-fabric.github.io/data-security-service-helm"
   - name: opa-service
     condition: opa-service.enabled
-    version: 1.0.1
+    version: 1.0.0
     repository: "https://tefiros.github.io/opa-service-helm"
   - name: openldap
     condition: openldap.enabled
